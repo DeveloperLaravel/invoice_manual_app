@@ -20,19 +20,22 @@ class InvoiceItemAdapter extends TypeAdapter<InvoiceItem> {
       fields[0] as String,
       fields[1] as double,
       fields[2] as int,
+      createdAt: fields[3] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, InvoiceItem obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
       ..write(obj.price)
       ..writeByte(2)
-      ..write(obj.quantity);
+      ..write(obj.quantity)
+      ..writeByte(3)
+      ..write(obj.createdAt);
   }
 
   @override

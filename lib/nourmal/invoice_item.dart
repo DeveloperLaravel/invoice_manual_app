@@ -10,6 +10,10 @@ class InvoiceItem extends HiveObject {
   final double price;
   @HiveField(2)
   final int quantity;
-  InvoiceItem(this.name, this.price, this.quantity);
+
+  @HiveField(3)
+  final DateTime createdAt; // 👈 تاريخ الإضافة
+  InvoiceItem(this.name, this.price, this.quantity, {DateTime? createdAt})
+    : createdAt = createdAt ?? DateTime.now();
   double get total => price * quantity;
 }
